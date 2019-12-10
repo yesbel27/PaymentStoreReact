@@ -7,4 +7,5 @@ Manuel Fiestas,
 Erick Huarcaya, 
 Waldo Trebejo, 
 Richard Pumapillo, 
-Diego Tarazona
+Diego Tarazona,
+Mario Puma
