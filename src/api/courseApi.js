@@ -2,7 +2,7 @@ import { handleResponse, handleError } from "./apiUtils";
 const baseUrl = process.env.API_URL + "/courses/";
 
 export function getCourses() {
-  return fetch(baseUrl)
+  return fetch("http://3.15.174.163/products")
     .then(handleResponse)
     .catch(handleError);
 }

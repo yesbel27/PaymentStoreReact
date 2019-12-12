@@ -113,6 +113,51 @@ const courses = [
   }
 ];
 
+const products= [
+  { 
+    "productId": 1,
+    "description": "celular samsung",
+    "price":15,
+    "stock":10
+  },
+  { 
+    "productId": 2,
+    "description": "celular huawei",
+    "price":10,
+    "stock":10
+  },
+  { 
+    "productId": 3,
+    "description": "tablet samsung",
+    "price":45,
+    "stock":10
+  },
+  { 
+    "productId": 4,
+    "description": "laptop toshiba",
+    "price":42,
+    "stock":10
+  },
+  { 
+    "productId": 5,
+    "description": "laptop HP",
+    "price":78,
+    "stock":10
+  },
+  { 
+    "productId": 6,
+    "description": "laptop sony",
+    "price":98,
+    "stock":10
+  },
+  { 
+    "productId": 7,
+    "description": "televisor samsung",
+    "price":44,
+    "stock":10
+  }
+];
+
 const professors = [
   { id: 1, name: "Efrain Bautista" },
   { id: 2, name: "Wilder Inga" },
@@ -143,10 +188,21 @@ const newAccount = {
   identityDocumentNumber: null
 };
 
+const newProduct={
+  id: null,
+  name: "",
+  price:null,
+  stock:null,
+  active:null,
+  image:""
+}
+
 // Using CommonJS style export so we can consume via Node (without using Babel-node)
 module.exports = {
   newCourse,
+  newProduct,
   courses,
+  products,
   professors,
   newAccount
 };

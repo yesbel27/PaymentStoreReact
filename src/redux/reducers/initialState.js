@@ -1,5 +1,7 @@
 export default {
   courses: [],
+  products: [],
+  orders: [],
   professors: [],
   accounts:[],
   customers:[],
