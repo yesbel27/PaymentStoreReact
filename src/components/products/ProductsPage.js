@@ -21,7 +21,7 @@ class ProductsPage extends React.Component {
   componentDidMount() {
     const { products, orders, actions } = this.props;
 
-
+    console.log(orders);
     if (products.length === 0) {
       actions.getProducts().catch(error => {
         alert("Loading products failed" + error);
@@ -30,9 +30,9 @@ class ProductsPage extends React.Component {
 
     if (orders.length === 0) {
       console.log("hola orders");
-      actions.getOrders().catch(error => {
+      /*actions.getOrders().catch(error => {
         alert("Loading orders failed" + error);
-      });
+      });*/
     }
 
   }
@@ -72,6 +72,7 @@ class ProductsPage extends React.Component {
   };
 
   render() {
+    console.log(this.props);
     return (
       <>
       <Container>
@@ -127,7 +128,7 @@ function mapDispatchToProps(dispatch) {
   return {
     actions: {
       getProducts: bindActionCreators(productActions.getProducts, dispatch),
-      getOrders: bindActionCreators(orderActions.getOrders, dispatch),
+      
       saveOrder: bindActionCreators(orderActions.saveOrder,dispatch),
       deleteOrder: bindActionCreators(orderActions.deleteOrder,dispatch)
     }

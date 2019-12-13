@@ -3,6 +3,7 @@ import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import FontAwesomeIcon from 'react-fontawesome';
+import { NavLink } from "react-router-dom";
 
 
 const Header = () => (
@@ -18,7 +19,10 @@ const Header = () => (
       </NavDropdown>
     </Nav>
     <Nav>
-      <Nav.Link href="purchase"><FontAwesomeIcon icon='fal'/>Shopping cart</Nav.Link>
+      <Nav.Link Redirect to="purchase"><FontAwesomeIcon icon='fal'/>Shopping cart</Nav.Link>
+      <NavLink to="/purchase" >
+        About
+      </NavLink>
       <Nav.Link href="/login">Login</Nav.Link>
       <Nav.Link eventKey={2} href="#memes">
         

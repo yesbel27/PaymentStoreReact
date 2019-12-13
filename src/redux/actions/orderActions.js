@@ -61,6 +61,7 @@ export function createOrderSuccess(order) {
   }*/
   
   export function saveOrder(order) {
+    console.log(order);
     return (dispatch) => {
       dispatch(beginApiCall());
       dispatch(createOrderSuccess(order))
