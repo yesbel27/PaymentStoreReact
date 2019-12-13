@@ -1,4 +1,5 @@
 import React from "react";
+import Container from 'react-bootstrap/Container'
 import { connect } from "react-redux";
 import * as productActions from "../../redux/actions/productActions";
 import * as orderActions from "../../redux/actions/orderActions";
@@ -37,7 +38,7 @@ class ProductsPage extends React.Component {
   }
 
   handleAddOrder = async product => {
-    toast.success("producto agregado");
+    toast.success("Added to cart");
     try {
       await this.props.actions.saveOrder(product);
     } catch (error) {
@@ -54,7 +55,7 @@ class ProductsPage extends React.Component {
   };
 
   handleDeleteOrder = async product => {
-    toast.success("producto eliminado");
+    toast.success("Product removed");
     try {
       await this.props.actions.deleteOrder(product);
     } catch (error) {
@@ -73,8 +74,10 @@ class ProductsPage extends React.Component {
   render() {
     return (
       <>
-        <h1>Lista de Productos</h1>
-
+      <Container>
+        <br></br>
+        <h3>Products</h3>
+        <br></br>
         {this.props.loading ? (
           
           <>
@@ -99,6 +102,7 @@ class ProductsPage extends React.Component {
               </div>
             </>
           )}
+          </Container>
       </>
     );
   }

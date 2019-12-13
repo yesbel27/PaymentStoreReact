@@ -1,31 +1,16 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 import HomePage from "./home/HomePage";
-import AboutPage from "./about/AboutPage";
 //import ProductPage from "./products/ProductsPage";
 
 import Header from "./common/Header";
 
-import AccountsPage from "./accounts/AccountsPage"
-import BlockAcount from "./accounts/BlockAcount"
-import Customer from "./Customer/Customer"
-import ListCustomer from "./Customer/ListCustomer"
-import ListTransactions from "./Transactions/ListTransactions"
-
-import CoursesPage from "./courses/CoursesPage";
-import TransferMoney from "./transfer/TransferMoney"
-import Deposit from "./Transactions/Deposit";
-import Withdrawal from "./Transactions/Withdrawal";
-
-import ProfessorsPage from "./professors/ProfessorsPage";
-import TransactionsPage from "./Transactions/TransactionsPage";
-import TransactionList from "./Transactions/TransactionList";
-import ManageCoursePage from "./courses/ManageCoursePage"; // eslint-disable-line import/no-named-as-default
 //import ManageAccountPage from "./accounts/ManageAccountPage"; // eslint-disable-line import/no-named-as-default 
 import PageNotFound from "./PageNotFound";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ProductsPage from "./products/ProductsPage";
+import PurchasePage from "./purchase/PurchasePage";
 import Login from "./login/LoginPage";
 
 function App() {
@@ -34,8 +19,8 @@ function App() {
       <Header />
       <Switch>
         <Route exact path="/" component={ProductsPage} /> 
-        <Route path="/about" component={AboutPage} />     
-        <Route path="/course" component={ManageCoursePage} />
+        <Route exact path="/ProductsPage" component={ProductsPage} /> 
+        <Route path="/purchase" component={PurchasePage} />
         <Route path="/login" component={Login} />   
 
         <Route component={PageNotFound} />

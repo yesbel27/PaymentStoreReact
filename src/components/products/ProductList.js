@@ -16,9 +16,11 @@ const ProductList = ({ products, orders, onAddCardClick, onRemoveCardClick }) =>
             {
               orders.find(a => a.productId === product.productId)
                 ?
-                <button type="button" className="btn btn-secondary" onClick={() => onRemoveCardClick(product)}>Remover del carrito</button>
+                <button type="button" className="btn btn-secondary" onClick={() => onRemoveCardClick(product)}>
+                remove from cart</button>
                 :
-                <button type="button" className="btn btn-primary" onClick={() => onAddCardClick(product)}>Agregar a carrito</button>
+                <button type="button" className="btn btn-primary" onClick={() => onAddCardClick(product)}>
+                Add to cart</button>
             }
           </div>
         </div>

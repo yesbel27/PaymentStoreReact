@@ -1,36 +1,24 @@
 import React from 'react'
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
-import NavDropdown from 'react-bootstrap/NavDropdown'
+import NavDropdown from 'react-bootstrap/NavDropdown';
+import FontAwesomeIcon from 'react-fontawesome';
+
 
 const Header = () => (
   <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-  <Navbar.Brand exact href="/">Bank accounts
+  <Navbar.Brand exact href="/">First Store
   </Navbar.Brand>
   <Navbar.Toggle aria-controls="responsive-navbar-nav" />
   <Navbar.Collapse id="responsive-navbar-nav">
     <Nav className="mr-auto">
-      <NavDropdown title="Options admin" id="collasible-nav-dropdown">
-        <NavDropdown.Item href="Customer">Register customer</NavDropdown.Item>
-        <NavDropdown.Item href="ListCustomer">List customers</NavDropdown.Item>
-        <NavDropdown.Item href="BlockAcount">Block account</NavDropdown.Item>
-        <NavDropdown.Item href="accounts">List acount</NavDropdown.Item>
-
-        <NavDropdown.Item href="ListTransactions">List transactions</NavDropdown.Item>
-
-      </NavDropdown>
-      <NavDropdown title="Options checker" id="collasible-nav-dropdown">
-        <NavDropdown.Item href="deposit">Deposit</NavDropdown.Item>
-        <NavDropdown.Item href="withdrawal">Withdrawal</NavDropdown.Item>
-      </NavDropdown>
-      <NavDropdown title="Options client" id="collasible-nav-dropdown">
-        <NavDropdown.Item href="register">Register acount</NavDropdown.Item>
-        <NavDropdown.Item href="TransferMoney">Transfer money</NavDropdown.Item>
-        <NavDropdown.Item href="transactions">My transactions</NavDropdown.Item>
+      <NavDropdown title="Category" id="collasible-nav-dropdown">
+        <NavDropdown.Item href="ProductsPage">Tecnology</NavDropdown.Item>
+        <NavDropdown.Item href="ProductsPage">Play</NavDropdown.Item>
       </NavDropdown>
     </Nav>
     <Nav>
-      <Nav.Link href="#deed">More</Nav.Link>
+      <Nav.Link href="purchase"><FontAwesomeIcon icon='fal'/>Shopping cart</Nav.Link>
       <Nav.Link href="/login">Login</Nav.Link>
       <Nav.Link eventKey={2} href="#memes">
         
