@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import * as productActions from "../../redux/actions/productActions";
+import * as orderActions from "../../redux/actions/orderActions";
 import PropTypes from "prop-types";
 import { bindActionCreators } from "redux";
 import ProductList from "./ProductList";
@@ -8,6 +9,7 @@ import ProductList from "./ProductList";
 import Spinner from "../common/Spinner";
 import { toast } from "react-toastify";
 
+const arrCard = [];
 class ProductsPage extends React.Component {
 
 
@@ -16,23 +18,56 @@ class ProductsPage extends React.Component {
   };
 
   componentDidMount() {
-    const { products, actions } = this.props;
+    const { products, orders, actions } = this.props;
+
 
     if (products.length === 0) {
       actions.getProducts().catch(error => {
         alert("Loading products failed" + error);
       });
     }
+
+    if (orders.length === 0) {
+      console.log("hola orders");
+      actions.getOrders().catch(error => {
+        alert("Loading orders failed" + error);
+      });
+    }
+
   }
 
   handleAddOrder = async product => {
-    /*toast.success("producto agregado");
+    toast.success("producto agregado");
     try {
       await this.props.actions.saveOrder(product);
     } catch (error) {
       toast.error("add failed. " + error.message, { autoClose: false });
+    }
+    /*if (arrCard.find(a=>a===`${product.productId}`)){
+      console.log("ya existe");
+      
+    }else{
+      arrCard.push(`${product.productId}`);
+      console.log(`agregando pedidoStock: ${product.productId}`);
+      console.log(arrCard);
     }*/
-    console.log(`agregando pedidoStock: ${product.stock}`);
+  };
+
+  handleDeleteOrder = async product => {
+    toast.success("producto eliminado");
+    try {
+      await this.props.actions.deleteOrder(product);
+    } catch (error) {
+      toast.error("delete failed. " + error.message, { autoClose: false });
+    }
+    /*if (arrCard.find(a => a === `${product.productId}`)) {
+      var index = arrCard.indexOf(`${product.productId}`);
+      arrCard.splice(index, 1);
+      console.log("elemento eliminado");
+
+    } else {
+      console.log("elemento no encontrado");
+    }*/
   };
 
   render() {
@@ -41,13 +76,25 @@ class ProductsPage extends React.Component {
         <h1>Lista de Productos</h1>
 
         {this.props.loading ? (
-          <Spinner />
+          
+          <>
+              <div className="card-deck">
+                <ProductList
+                  products={this.props.products}
+                  orders={this.props.orders}
+                  onAddCardClick={this.handleAddOrder}
+                  onRemoveCardClick={this.handleDeleteOrder}
+                />
+              </div>
+            </>
         ) : (
             <>
               <div className="card-deck">
                 <ProductList
                   products={this.props.products}
+                  orders={this.props.orders}
                   onAddCardClick={this.handleAddOrder}
+                  onRemoveCardClick={this.handleDeleteOrder}
                 />
               </div>
             </>
@@ -59,6 +106,7 @@ class ProductsPage extends React.Component {
 
 ProductsPage.propTypes = {
   products: PropTypes.array.isRequired,
+  orders: PropTypes.array.isRequired,
   actions: PropTypes.object.isRequired,
   loading: PropTypes.bool.isRequired
 };
@@ -66,6 +114,7 @@ ProductsPage.propTypes = {
 function mapStateToProps(state) {
   return {
     products: state.products,
+    orders: state.orders,
     loading: state.apiCallsInProgress > 0
   };
 }
@@ -73,7 +122,10 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     actions: {
-      getProducts: bindActionCreators(productActions.getProducts, dispatch)
+      getProducts: bindActionCreators(productActions.getProducts, dispatch),
+      getOrders: bindActionCreators(orderActions.getOrders, dispatch),
+      saveOrder: bindActionCreators(orderActions.saveOrder,dispatch),
+      deleteOrder: bindActionCreators(orderActions.deleteOrder,dispatch)
     }
   };
 }

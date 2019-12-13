@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 
-const ProductList = ({ products, onAddCardClick }) => (
+const ProductList = ({ products, orders, onAddCardClick, onRemoveCardClick }) => (
 
   <div className="card-deck">
     {products.map(product => {
@@ -13,7 +13,13 @@ const ProductList = ({ products, onAddCardClick }) => (
             <h5 className="card-title">{product.description}</h5>
             <p className="card-text">{`Stock: ${product.stock}`}</p>
             <p className="card-text">{`Precio: S/. ${product.price}`}</p>
-            <button type="button" className="btn btn-primary" onClick={()=>onAddCardClick(product)}>Agregar a carrito</button>
+            {
+              orders.find(a => a.productId === product.productId)
+                ?
+                <button type="button" className="btn btn-secondary" onClick={() => onRemoveCardClick(product)}>Remover del carrito</button>
+                :
+                <button type="button" className="btn btn-primary" onClick={() => onAddCardClick(product)}>Agregar a carrito</button>
+            }
           </div>
         </div>
       );
@@ -23,7 +29,9 @@ const ProductList = ({ products, onAddCardClick }) => (
 
 ProductList.propTypes = {
   products: PropTypes.array.isRequired,
-  onAddCardClick: PropTypes.func.isRequired
+  orders: PropTypes.array.isRequired,
+  onAddCardClick: PropTypes.func.isRequired,
+  onRemoveCardClick: PropTypes.func.isRequired
 }
 
 export default ProductList;
