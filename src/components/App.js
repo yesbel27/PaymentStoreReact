@@ -26,7 +26,7 @@ import PageNotFound from "./PageNotFound";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ProductsPage from "./products/ProductsPage";
-
+import Login from "./login/LoginPage";
 
 function App() {
   return (
@@ -36,6 +36,7 @@ function App() {
         <Route exact path="/" component={ProductsPage} /> 
         <Route path="/about" component={AboutPage} />     
         <Route path="/course" component={ManageCoursePage} />
+        <Route path="/login" component={Login} />   
 
         <Route component={PageNotFound} />
       </Switch>
