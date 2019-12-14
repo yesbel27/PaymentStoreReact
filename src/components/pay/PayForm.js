@@ -4,11 +4,11 @@ import Form from 'react-bootstrap/Form'
 
 const PayForm = ({ orders, onPurchaseClick, onPurchaseChange }) => (
   
-  <div className="row">
+  <div className="row ">
     
     
         
-        <div className="card col-md-6" style={{ width: '18rem' }} >
+        <div className="card col-md-6 m-auto" style={{ width: '18rem' }} >
           <img src={"https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQhKbBK4ivXP3xofJkHMnwtQ5-gyee8lz1ZUPMjpXkfDTH_7U5j"} className="card-img-top mt-3" alt="..."></img>
           <div className="card-body">
             <div className="form-group">
