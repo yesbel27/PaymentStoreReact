@@ -16,6 +16,7 @@ const Header = () => (
     <Nav>
       <NavLink to="purchase">Shopping cart |</NavLink>
       <NavLink to="/login">| Login</NavLink>
+
     </Nav>
   </Navbar.Collapse>
 </Navbar>

@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import * as loginActions from "../../redux/actions/loginActions";
 import PropTypes from "prop-types";
 import { bindActionCreators } from "redux";
+import { toast } from "react-toastify";
 
 class LoginPage extends React.Component{
 
@@ -22,18 +23,16 @@ class LoginPage extends React.Component{
         this.setState({ [name]: value });
     }
 
-    handleSubmit(e) {
+    handleSubmit = async e =>{
         e.preventDefault();
-
-        this.setState({ submitted: true });
-        const { username, password } = this.state;
-        if (username && password) {
-            this.props.login(username, password);
+        try {
+            await this.props.actions.login(this.state.username,this.state.password);
+        } catch (error) {
+            toast.error("Login Failed. " + error.message, { autoClose: false });
         }
     }
 
      render(){
-         console.log(this.props.customerId);
         const { loggingIn } = this.props;
         const { username, password, submitted } = this.state;
          return(
@@ -80,7 +79,7 @@ function mapStateToProps(state){
 function mapDispatchToProps(dispatch){
     return{
         actions:{
-            login: bindActionCreators(loginActions.login,dispatch)
+            login: bindActionCreators(loginActions.login, dispatch)
         }
     };
 }
