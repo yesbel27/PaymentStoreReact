@@ -1,20 +1,19 @@
 import * as types from "./actionTypes";
-import * as productApi from "../../api/productApi";
 import { beginApiCall, apiCallError } from "./apiStatusActions";
 import Axios from "axios"
 
-export function getProductSuccess(products) {
-  return { type: types.LOAD_PRODUCTS_SUCCESS, products };
+export function getLoginCustomer(customerId) {
+  return { type: types.LOGIN, customerId };
 }
 
-export function getProducts() {
+export function login(user,password) {
   
   return(dispatch)=>{   
     dispatch(beginApiCall());
     //Axios.get('https://my-json-server.typicode.com/richardpuma/db_data/products')
-    return Axios.get("http://3.15.174.163/products",{headers:{"Access-Control-Allow-Origin": "*"}})
+    return Axios.post("https://banking-api-customers.cfapps.io/api/users/login",{"Name":user,"Password":password})
     .then(result=>{
-      dispatch(getProductSuccess(result.data));
+      dispatch(getLoginCustomer(result.data));
     }).catch(error=>{
       dispatch(apiCallError(error));
       throw error;
