@@ -25,7 +25,7 @@ class PurchasePage extends React.Component{
   }
 
   handlePurchase = async purchase =>{
-    toast.success("Added to cart");
+    toast.success("Order registered");
     console.log("prueba de purchase");
 
     const data = {customerId:"10"};
@@ -42,6 +42,7 @@ class PurchasePage extends React.Component{
 
     try {
       await this.props.actions.savePurchase(data);
+      
     } catch (error) {
       toast.error("add failed. " + error.message, { autoClose: false });
     }
@@ -55,14 +56,17 @@ class PurchasePage extends React.Component{
     console.log(this.props.orders);
     return (
       <>
-        <div className="card-deck">
+      <br/>
+      <h3>Shoping cart </h3>
+      <br/>
+       
                 <PurchaseList
                   orders={this.props.orders}
                   onPurchaseClick ={this.handlePurchase}
                   onPurchaseChange = {this.handleQuantity}
                  
                 />
-        </div>
+       
       </>
     );
 }

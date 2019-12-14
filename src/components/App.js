@@ -1,6 +1,6 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
-import HomePage from "./home/HomePage";
+import OrdersPage from "./orders/OrdersPage";
 //import ProductPage from "./products/ProductsPage";
 
 import Header from "./common/Header";
@@ -21,6 +21,7 @@ function App() {
         <Route exact path="/" component={ProductsPage} /> 
         <Route exact path="/ProductsPage" component={ProductsPage} /> 
         <Route path="/purchase" component={PurchasePage} />
+        <Route path="/orders" component={OrdersPage} />
         <Route path="/login" component={Login} />   
 
         <Route component={PageNotFound} />

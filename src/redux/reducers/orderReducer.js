@@ -3,7 +3,7 @@ import initialState from "./initialState";
 
 
 
-export default function orderReducer(state = initialState.orders, action) {
+export default function orderReducer(state = initialState.ordersR, action) {
   switch (action.type) {
     case types.CREATE_ORDER_SUCCESS:
       return [...state, { ...action.order }];
