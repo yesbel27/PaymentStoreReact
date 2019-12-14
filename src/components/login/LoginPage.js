@@ -4,6 +4,7 @@ import * as loginActions from "../../redux/actions/loginActions";
 import PropTypes from "prop-types";
 import { bindActionCreators } from "redux";
 import { toast } from "react-toastify";
+import {Redirect} from 'react-router-dom';
 
 class LoginPage extends React.Component{
 
@@ -18,6 +19,9 @@ class LoginPage extends React.Component{
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
+    
+  
+
     handleChange(e) {
         const { name, value } = e.target;
         this.setState({ [name]: value });
@@ -27,6 +31,7 @@ class LoginPage extends React.Component{
         e.preventDefault();
         try {
             await this.props.actions.login(this.state.username,this.state.password);
+            window.location = "http://localhost:3000";
         } catch (error) {
             toast.error("Login Failed. " + error.message, { autoClose: false });
         }
