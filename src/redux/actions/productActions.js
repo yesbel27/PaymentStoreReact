@@ -11,7 +11,7 @@ export function getProducts() {
   
   return(dispatch)=>{   
     dispatch(beginApiCall());
- HEAD
+ 
     //Axios.get('https://my-json-server.typicode.com/richardpuma/db_data/products')
 
 
