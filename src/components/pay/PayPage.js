@@ -13,14 +13,12 @@ class PayPage extends React.Component{
   };
 
   componentDidMount() {
-    
-    
-    
+    toast.success("Purchase success");
   }
 
-  handlePurchase = async purchase =>{
-    
-  }; 
+  purchaseSuccess (){
+    toast.success("Purchase success");
+  }
 
   render() {
     console.log(this.props.orders);
@@ -31,7 +29,7 @@ class PayPage extends React.Component{
       <br/>
        
                 <PayForm
-                  
+                  purchaseSuccess={this.purchaseSuccess}
                  
                 />
        

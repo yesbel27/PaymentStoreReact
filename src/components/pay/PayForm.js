@@ -1,8 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Form from 'react-bootstrap/Form'
+import Form from 'react-bootstrap/Form';
+import { toast } from "react-toastify";
+import { createPurchaseSuccess } from "../../redux/actions/purchaseActions";
 
-const PayForm = ({ orders, onPurchaseClick, onPurchaseChange }) => (
+const PayForm = ({ purchaseSuccess }) => (
   
   <div className="row ">
     
@@ -30,7 +32,7 @@ const PayForm = ({ orders, onPurchaseClick, onPurchaseChange }) => (
             </div>
             </div>
             <div className="form-group">
-            <button type="button" className="btn btn-primary " onClick={() => onPurchaseClick(orders)}>
+            <button type="button" className="btn btn-primary " onClick={() => purchaseSuccess()}>
       Make Payment</button>
     </div>
             </div>
