@@ -6,5 +6,4 @@ export default {
   transactions:[],
   customerActive:"1",
   apiCallsInProgress: 0
-
 };
