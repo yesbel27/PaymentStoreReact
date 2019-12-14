@@ -51,7 +51,7 @@ export function getProducts() {
   return(dispatch)=>{   
     dispatch(beginApiCall());
     //Axios.get('https://my-json-server.typicode.com/richardpuma/db_data/products')
-    return Axios.get("http://3.15.174.163/products",{headers:{"Access-Control-Allow-Origin": "*"}})
+    return Axios.get("http://localhost:8090/api/products",{headers:{"Access-Control-Allow-Origin": "*"}})
     .then(result=>{
       dispatch(getProductSuccess(result.data));
     }).catch(error=>{

@@ -19,7 +19,7 @@ const Header = () => (
       </NavDropdown>
     </Nav>
     <Nav>
-      <Nav.Link Redirect to="purchase"><FontAwesomeIcon icon='fal'/>Shopping cart</Nav.Link>
+      <Nav.Link href="purchase"><FontAwesomeIcon icon='fal'/>Shopping cart</Nav.Link>
       <NavLink to="/purchase" >
         About
       </NavLink>
