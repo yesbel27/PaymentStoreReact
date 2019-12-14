@@ -32,6 +32,7 @@ class LoginPage extends React.Component{
         try {
             await this.props.actions.login(this.state.username,this.state.password);
             window.location = "http://localhost:3000";
+            //alert("Login  Succesfull" + result.data.username);
         } catch (error) {
             toast.error("Login Failed. " + error.message, { autoClose: false });
         }

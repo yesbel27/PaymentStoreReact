@@ -12,7 +12,7 @@ export function login(user,password) {
     dispatch(beginApiCall());
     return Axios.post("https://banking-api-customers.cfapps.io/api/users/login",{"Name":user,"Password":password})
     .then(result=>{
-      console.log("Respuesta:"+result.data.customerId);
+      alert("Bienvenido:" + user);
       //alert("Login Succesfull");
       dispatch(getLoginCustomer(result.data));
     }).catch(error=>{

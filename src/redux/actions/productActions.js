@@ -11,7 +11,10 @@ export function getProducts() {
   
   return(dispatch)=>{   
     dispatch(beginApiCall());
+ HEAD
     //Axios.get('https://my-json-server.typicode.com/richardpuma/db_data/products')
+
+
     return Axios.get("http://3.15.174.163/api/products",{headers:{"Access-Control-Allow-Origin": "*"}})
     .then(result=>{
       dispatch(getProductSuccess(result.data));
