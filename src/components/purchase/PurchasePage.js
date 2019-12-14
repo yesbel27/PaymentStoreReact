@@ -1,21 +1,59 @@
 import React from 'react'
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import * as orderActions from "../../redux/actions/orderActions";
+//import * as orderActions from "../../redux/actions/orderActions";
+import * as purchaseActions from "../../redux/actions/purchaseActions";
 import PropTypes from "prop-types";
 import PurchaseList from "./PurchaseList";
+import { toast } from "react-toastify";
 
 class PurchasePage extends React.Component{
   state = {
-    redirectToAddProductPage: false
+    redirectToAddPurchasePage: false
   };
 
   componentDidMount() {
-    const { orders} = this.props;
+    const { orders, purchases, actions} = this.props;
     
     if (orders.length === 0) {
       console.log("hola orders");
     }
+
+    if (purchases.length === 0) {
+      console.log("hola purchases");
+    }
+  }
+
+  handlePurchase = async purchase =>{
+    toast.success("Added to cart");
+    console.log("prueba de purchase");
+    console.log(purchase);   
+    
+    
+    /*const data = {"customerId":"1"};
+    let products =[];
+    const data1 = {};
+    console.log(purchase);
+    purchase.map(c=>{
+      
+      console.log(c);
+      this.data1.productId=c.productId;
+      this.products.push(data1);
+    });
+    this.data.products=this.products;
+    console.log("diego");
+    console.log(this.data);*/
+
+
+    try {
+      await this.props.actions.savePurchase(purchase);
+    } catch (error) {
+      toast.error("add failed. " + error.message, { autoClose: false });
+    }
+  }; 
+
+  handleQuantity = async valor=>{
+    console.log("el valor es "+ valor);
   }
 
   render() {
@@ -25,6 +63,8 @@ class PurchasePage extends React.Component{
         <div className="card-deck">
                 <PurchaseList
                   orders={this.props.orders}
+                  onPurchaseClick ={this.handlePurchase}
+                  onPurchaseChange = {this.handleQuantity}
                  
                 />
         </div>
@@ -35,6 +75,7 @@ class PurchasePage extends React.Component{
 
 PurchasePage.propTypes = {
   orders: PropTypes.array.isRequired,
+  purchases: PropTypes.array.isRequired,
   actions: PropTypes.object.isRequired,
   loading: PropTypes.bool.isRequired
 };
@@ -43,6 +84,7 @@ function mapStateToProps(state) {
   return {
     products: state.products,
     orders: state.orders,
+    purchases: state.purchases,
     loading: state.apiCallsInProgress > 0
   };
 }
@@ -50,6 +92,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     actions: {
+      savePurchase: bindActionCreators(purchaseActions.savePurchase,dispatch),
     }
   };
 }
