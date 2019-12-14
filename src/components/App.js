@@ -10,6 +10,7 @@ import PageNotFound from "./PageNotFound";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ProductsPage from "./products/ProductsPage";
+import PayPage from "./pay/PayPage";
 import PurchasePage from "./purchase/PurchasePage";
 import Login from "./login/LoginPage";
 
@@ -22,6 +23,7 @@ function App() {
         <Route exact path="/ProductsPage" component={ProductsPage} /> 
         <Route path="/purchase" component={PurchasePage} />
         <Route path="/orders" component={OrdersPage} />
+        <Route path="/pay" component={PayPage} />
         <Route path="/login" component={Login} />   
 
         <Route component={PageNotFound} />

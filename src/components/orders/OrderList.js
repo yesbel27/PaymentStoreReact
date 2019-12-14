@@ -22,12 +22,7 @@ const OrderList = ({ ordersR}) => (
             <td>{orderR.orderDate}</td>
             <td>REGISTERED</td>
             <td>
-              <button
-                className="btn btn-outline-success"
-                
-              >
-                Pay
-              </button>
+            <Link to="/pay" className="btn btn-primary">Pay</Link>
             </td>
           </tr>
         );
