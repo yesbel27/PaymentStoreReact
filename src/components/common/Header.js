@@ -1,8 +1,6 @@
 import React from 'react'
 import Navbar from 'react-bootstrap/Navbar'
-import Nav from 'react-bootstrap/Nav'
-import NavDropdown from 'react-bootstrap/NavDropdown';
-import FontAwesomeIcon from 'react-fontawesome';
+import Nav from 'react-bootstrap/Nav';
 import { NavLink } from "react-router-dom";
 
 
@@ -13,20 +11,12 @@ const Header = () => (
   <Navbar.Toggle aria-controls="responsive-navbar-nav" />
   <Navbar.Collapse id="responsive-navbar-nav">
     <Nav className="mr-auto">
-      <NavDropdown title="Category" id="collasible-nav-dropdown">
-        <NavDropdown.Item href="ProductsPage">Tecnology</NavDropdown.Item>
-        <NavDropdown.Item href="ProductsPage">Play</NavDropdown.Item>
-      </NavDropdown>
+      <NavLink to="purchase">Shopping cart</NavLink>
     </Nav>
     <Nav>
-      <Nav.Link href="purchase"><FontAwesomeIcon icon='fal'/>Shopping cart</Nav.Link>
-      <NavLink to="/purchase" >
-        About
-      </NavLink>
-      <Nav.Link href="/login">Login</Nav.Link>
-      <Nav.Link eventKey={2} href="#memes">
-        
-      </Nav.Link>
+      <NavLink to="purchase">Shopping cart |</NavLink>
+      <NavLink to="/login">| Login</NavLink>
+
     </Nav>
   </Navbar.Collapse>
 </Navbar>

@@ -1,8 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
-import * as professorActions from "../../redux/actions/professorActions";
+import * as loginActions from "../../redux/actions/loginActions";
 import PropTypes from "prop-types";
 import { bindActionCreators } from "redux";
+import { toast } from "react-toastify";
 
 class LoginPage extends React.Component{
 
@@ -22,13 +23,12 @@ class LoginPage extends React.Component{
         this.setState({ [name]: value });
     }
 
-    handleSubmit(e) {
+    handleSubmit = async e =>{
         e.preventDefault();
-
-        this.setState({ submitted: true });
-        const { username, password } = this.state;
-        if (username && password) {
-            this.props.login(username, password);
+        try {
+            await this.props.actions.login(this.state.username,this.state.password);
+        } catch (error) {
+            toast.error("Login Failed. " + error.message, { autoClose: false });
         }
     }
 
@@ -56,7 +56,7 @@ class LoginPage extends React.Component{
                         }
                     </div>
                     <div className="form-group">
-                        <button className="btn btn-primary">Login</button>
+                        <button className="btn btn-primary" type="submit">Login</button>
                         {loggingIn &&
                             <img src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
                         }
@@ -71,7 +71,7 @@ class LoginPage extends React.Component{
 
 function mapStateToProps(state){
     return {
-        professors:state.professors,
+        customerId:state.customerActive,
         loading: state.apiCallsInProgress>0
     };
 }
@@ -79,15 +79,14 @@ function mapStateToProps(state){
 function mapDispatchToProps(dispatch){
     return{
         actions:{
-            getProfessors: bindActionCreators(professorActions.getProfessors,dispatch),
-            deleteProfessor: bindActionCreators(professorActions.deleteProfessor,dispatch)
+            login: bindActionCreators(loginActions.login, dispatch)
         }
     };
 }
 
 LoginPage.propTypes={
-    professors: PropTypes.array.isRequired,
     actions: PropTypes.object.isRequired,
+    customerId: PropTypes.object.isRequired,
     loading:PropTypes.bool.isRequired
 };
 

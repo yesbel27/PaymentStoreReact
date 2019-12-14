@@ -2,9 +2,9 @@ export default {
   courses: [],
   products: [],
   orders: [],
-  professors: [],
-  accounts:[],
   customers:[],
   transactions:[],
+  customerActive:"1",
   apiCallsInProgress: 0
+
 };
